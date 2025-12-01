@@ -213,7 +213,7 @@ fetch("pinned.json")
             <p class="project-status completed-status">Pinned</p>
             <p>${node.description || "No description available."}</p>
             <div class="project-tags">${tags}</div>
-            ${node.url}View on GitHub</a>
+            <{node.url}View on GitHub</a>
           </div>
         </div>
       `;
