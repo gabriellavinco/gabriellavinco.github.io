@@ -16,7 +16,7 @@ jobs:
       - name: Fetch pinned repos
         run: |
           curl -H "Authorization: bearer ${{ secrets.GH_TOKEN }}" \
-          -X POST -d '{"query":"{ user(login: \"YOUR_GITHUB_USERNAME\") { pinnedItems(first: 6) { edges { node { ... on Repository { name description url languages(first: 5) { nodes { name } } } } } } } }"}' \
+          -X POST -d '{"query":"{ user(login: \"gabriellavinco\") { pinnedItems(first: 6) { edges { node { ... on Repository { name description url languages(first: 5) { nodes { name } } } } } } } }"}' \
           https://api.github.com/graphql \
           | jq '.data.user.pinnedItems.edges' > pinned.json
 
