@@ -196,3 +196,25 @@ function throttle(func, limit) {
         }
     };
 }
+
+
+fetch("https://your-backend-domain.com/api/pinned")
+  .then(res => res.json())
+  .then(data => {
+    const projects = data.data.user.pinnedItems.edges;
+    const container = document.querySelector(".projects");
+    container.innerHTML = "";
+    projects.forEach(({ node }) => {
+      const tags = node.languages.nodes.map(lang => `<span class="tag">${lang.name}</span>`).join("");
+      container.innerHTML += `
+        <div class="project-card completed">
+          <div class="project-content">
+            <h3>${node.name}</h3>
+            <p class="project-status completed-status">Pinned</p>
+            <p>${node.description || "No description available."}</p>
+            <div class="project-tags">${tags}</div>
+            <a href="${node.url}" class="btn-secondary" target     </div>
+      `;
+    });
+  })
+
