@@ -198,13 +198,13 @@ function throttle(func, limit) {
 }
 
 
-fetch("https://your-backend-domain.com/api/pinned")
+
+fetch("pinned.json")
   .then(res => res.json())
   .then(data => {
-    const projects = data.data.user.pinnedItems.edges;
     const container = document.querySelector(".projects");
     container.innerHTML = "";
-    projects.forEach(({ node }) => {
+    data.forEach(({ node }) => {
       const tags = node.languages.nodes.map(lang => `<span class="tag">${lang.name}</span>`).join("");
       container.innerHTML += `
         <div class="project-card completed">
@@ -213,8 +213,12 @@ fetch("https://your-backend-domain.com/api/pinned")
             <p class="project-status completed-status">Pinned</p>
             <p>${node.description || "No description available."}</p>
             <div class="project-tags">${tags}</div>
-            <a href="${node.url}" class="btn-secondary" target     </div>
+            ${node.url}View on GitHub</a>
+          </div>
+        </div>
       `;
     });
   })
+  .catch(err => console.error(err));
+
 
