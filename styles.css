@@ -9,6 +9,7 @@
     --accent-color: #06b6d4;
     --background-color: #3d3d3e;
     --background-alt: #f8fafc;
+    --main-background-color: #ffffff;
     --text-color: #1e293b;
     --text-muted: #64748b;
     --border-color: #e2e8f0;
@@ -60,7 +61,7 @@ body {
     font-family: var(--font-family);
     line-height: var(--line-height);
     color: var(--text-color);
-    background-color: var(--background-color);
+    background-color: var(--main-background-color);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
