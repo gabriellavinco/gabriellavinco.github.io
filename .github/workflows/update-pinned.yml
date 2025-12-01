@@ -1,0 +1,29 @@
+
+name: Update Pinned Repos
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  update-pinned:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Fetch pinned repos
+        run: |
+          curl -H "Authorization: bearer ${{ secrets.GH_TOKEN }}" \
+          -X POST -d '{"query":"{ user(login: \"YOUR_GITHUB_USERNAME\") { pinnedItems(first: 6) { edges { node { ... on Repository { name description url languages(first: 5) { nodes { name } } } } } } } }"}' \
+          https://api.github.com/graphql \
+          | jq '.data.user.pinnedItems.edges' > pinned.json
+
+      - name: Commit and push
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add pinned.json
+          git commit -m "Update pinned repos"
+          git push
