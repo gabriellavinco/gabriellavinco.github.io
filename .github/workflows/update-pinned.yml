@@ -3,8 +3,8 @@ name: Update Pinned Repos
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight
-  workflow_dispatch: # Allows manual trigger
+    - cron: '0 0 * * *' # Runs daily
+  workflow_dispatch:
 
 jobs:
   update-pinned:
@@ -26,4 +26,3 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add pinned.json
           git commit -m "Update pinned repos"
-          git push
