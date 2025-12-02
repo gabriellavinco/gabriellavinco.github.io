@@ -3,18 +3,26 @@
    =================================== */
 :root {
     /* Colors */
-    --primary-color: #5FA5D3;
-    --primary-hover: #3588C0;
-    --secondary-color: #5E4B56;
+    --primary-color: #5E4B56;
+    --primary-hover: #715B68;
+    --secondary-color: #7E845C;
     --accent-color: #A690A4;
-    --background-color: #5E4B56;
-    --background-alt: #B1B695;
-    --main-background-color: #FCD0A1;
+    --background-color: #FCE2C5;
+    --background-alt: #FCE2C5;
+    --main-background-color: #FDECD8;
+    --header-background-color: #44363E;
+    --header-button-hover: #5E4B56; 
     --text-color: #5E4B56;
-    --text-muted: #AFD2E9;
-    --border-color: #e2e8f0;
+    --text-muted: #927790;
+    --text-light: #e0e0e0;
+    --border-color: #FACF9E;
     --success-color: #22c55e;
     --error-color: #ef4444;
+    --button-hover-color: #BFDBED;
+    --button-border-color: #7FB7DC;
+    --button-bg-color: #7FB7DC;
+    --button-text-color: #FFFFFF;
+    --button-hover-text-color: #FFFFFF;
 
     /* Typography */
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -115,7 +123,7 @@ p {
    Header & Navigation
    =================================== */
 header {
-    background-color: var(--background-color);
+    background-color: var(--header-background-color);
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
@@ -134,7 +142,7 @@ nav {
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--text-light);
 }
 
 .nav-links {
@@ -206,8 +214,15 @@ section {
 
 .hero p {
     font-size: 1.25rem;
-    color: var(--text-muted);
+    color: var(--text-color);
     margin-bottom: var(--spacing-lg);
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
 }
 
 /* ===================================
@@ -226,7 +241,7 @@ section {
 .btn {
     display: inline-block;
     padding: var(--spacing-md) var(--spacing-lg);
-    background-color: var(--primary-color);
+    background-color: var(--button-bg-color);
     color: white;
     border: none;
     border-radius: var(--border-radius);
@@ -237,7 +252,7 @@ section {
 }
 
 .btn:hover {
-    background-color: var(--primary-hover);
+    background-color: var(--button-hover-color);
     color: white;
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
@@ -247,8 +262,8 @@ section {
     display: inline-block;
     padding: var(--spacing-sm) var(--spacing-md);
     background-color: transparent;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
+    color: var(--button-bg-color);
+    border: none;
     border-radius: var(--border-radius);
     font-size: 0.875rem;
     font-weight: 500;
@@ -257,7 +272,7 @@ section {
 }
 
 .btn-secondary:hover {
-    background-color: var(--primary-color);
+    background-color: var(--button-hover-color);
     color: white;
 }
 
@@ -680,7 +695,7 @@ body {
     padding: 0;
 }
 header {
-    background: #333;
+    background: var;
     color: #fff;
     padding: 10px;
 }
@@ -715,8 +730,8 @@ header {
     display: inline-block;
     margin-top: 10px;
     padding: 8px 12px;
-    background: #007bff;
-    color: #fff;
+    background: var(--button-bg-color);
+    color: var(--button-text-color);
     text-decoration: none;
     border-radius: 4px;
 }
