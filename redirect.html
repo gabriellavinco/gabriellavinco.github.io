@@ -1,14 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API Integration Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitbit Callback</title>
 </head>
 <body>
-  <h1>Posts from API</h1>
-  <div id="posts"></div>
+    <h1>Processing Fitbit Authorization...</h1>
+    <p id="message">Please wait...</p>
 
-  <script src="script.js"></script>
+    <script>
+        // Extract query parameters from the URL
+        const params = new URLSearchParams(window.location.search);
+        const authCode = params.get('code');
+        const error = params.get('error');
+
+        if (authCode) {
+            // Send the authorization code to the Python server
+            fetch('http://localhost:8080/receive_code', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ code: authCode }),
+            })
+            .then(response => response.json()) // Parse JSON response
+            .then(data => {
+                document.getElementById('message').innerText = "Authorization complete. You can close this window.";
+                console.log("Server response:", data);
+            })
+            .catch(err => {
+                document.getElementById('message').innerText = "Failed to send authorization code.";
+                console.error("Error:", err);
+            });
+        } else if (error) {
+            document.getElementById('message').innerText = `Error: ${error}`;
+        } else {
+            document.getElementById('message').innerText = "No authorization code found.";
+        }
+    </script>
 </body>
 </html>
+                    <p>Explore my previous work and accomplishments.</p>
+                    <a href="past-projects.html" class="btn-secondary">View Projects</a>
+                </div>
+                <div class="card">
+                    <h3>Curriculum Vitae</h3>
+                    <p>Check out my professional background and skills.</p>
+                    <a href="cv.html" class="btn-secondary">View CV</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Gabriella Vinco. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts.js"></script>  
